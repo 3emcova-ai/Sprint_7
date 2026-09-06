@@ -4,4 +4,6 @@ class Urls:
    LOGIN_COURIER = "/api/v1/courier/login"
    DELETE_COURIER = "/api/v1/courier"
 
-#class ResponseMessages:
+class ResponseMessages:
+    ERROR_WITHOUT_LOGIN_PASSWORD = 'Недостаточно данных для создания учетной записи'
+    DUPLICATE_LOGIN = 'Этот логин уже используется'

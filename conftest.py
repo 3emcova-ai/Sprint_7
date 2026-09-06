@@ -19,8 +19,8 @@ def generate_courier_with_deletion():
             'login': courier_data['login'],
             'password': courier_data['password']
             })
-    if response_login.status_code == 200:
-        courier_id = response_login.json()['id']
+        if response_login.status_code == 200:
+            courier_id = response_login.json()['id']
 
     yield courier_data, response, courier_id
         
