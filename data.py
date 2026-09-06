@@ -5,5 +5,7 @@ class Urls:
    DELETE_COURIER = "/api/v1/courier"
 
 class ResponseMessages:
-    ERROR_WITHOUT_LOGIN_PASSWORD = 'Недостаточно данных для создания учетной записи'
-    DUPLICATE_LOGIN = 'Этот логин уже используется'
+   ERROR_CREATE_WITHOUT_LOGIN_PASSWORD = 'Недостаточно данных для создания учетной записи'
+   DUPLICATE_LOGIN = 'Этот логин уже используется'
+   ERROR_LOGIN_WITHOUT_LOGIN_PASSWORD = 'Недостаточно данных для входа'
+   ERROR_ACCOUNT_NOT_FOUND = 'Учетная запись не найдена'
