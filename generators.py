@@ -1,6 +1,4 @@
-import requests
 import random
-import string
 
 from datetime import datetime, timedelta
 from faker import Faker
@@ -11,15 +9,12 @@ fake = Faker()
 # Генераторы для курьера
 def login_generator():
     return fake.user_name()
-    #return generated_login
 
 def password_generator():
     return fake.password()
-    # generated_password
 
 def firstname_generator():
     return fake.first_name()
-    #return generated_firstname
 
 # Генераторы для заказа
 def lastname_generator():

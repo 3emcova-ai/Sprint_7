@@ -30,3 +30,4 @@ class TestOrderCreation:
         response_order_different_colors = requests.post(f'{Urls.SCOOTER_URL}{Urls.CREATE_GET_ORDER}', json=order_data)
         assert response_order_different_colors.status_code == 201
         assert response_order_different_colors.json()['track'] > 0
+        

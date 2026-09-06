@@ -3,8 +3,7 @@ class Urls:
    CREATE_COURIER = "/api/v1/courier"
    LOGIN_COURIER = "/api/v1/courier/login"
    DELETE_COURIER = "/api/v1/courier"
-   CREATE_ORDER = "/api/v1/orders"
-   GET_ORDERS = "/api/v1/orders"
+   CREATE_GET_ORDER = "/api/v1/orders"
 
 class ResponseMessages:
    ERROR_CREATE_WITHOUT_LOGIN_PASSWORD = 'Недостаточно данных для создания учетной записи'
