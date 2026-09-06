@@ -2,56 +2,44 @@ import requests
 import random
 import string
 
+from datetime import datetime, timedelta
 from faker import Faker
-from data import Urls
 
 
 fake = Faker()
 
+# Генераторы для курьера
 def login_generator():
-    generated_login = fake.user_name()
-    return generated_login
+    return fake.user_name()
+    #return generated_login
 
 def password_generator():
-    generated_password = fake.password()
-    return generated_password
+    return fake.password()
+    # generated_password
 
 def firstname_generator():
-    generated_firstname = fake.first_name()
-    return generated_firstname
+    return fake.first_name()
+    #return generated_firstname
 
-# метод регистрации нового курьера возвращает список из логина и пароля
-# если регистрация не удалась, возвращает пустой список
-def register_new_courier_and_return_login_password():
-    # метод генерирует строку, состоящую только из букв нижнего регистра, в качестве параметра передаём длину строки
-    def generate_random_string(length):
-        letters = string.ascii_lowercase
-        random_string = ''.join(random.choice(letters) for i in range(length))
-        return random_string
+# Генераторы для заказа
+def lastname_generator():
+    return fake.last_name()
 
-    # создаём список, чтобы метод мог его вернуть
-    login_pass = []
+def address_generator():
+    return fake.address()
 
-    # генерируем логин, пароль и имя курьера
-    login = generate_random_string(10)
-    password = generate_random_string(10)
-    first_name = generate_random_string(10)
+def metro_station_generator():
+    return random.randint(1, 30)
 
-    # собираем тело запроса
-    payload = {
-        "login": login,
-        "password": password,
-        "firstName": first_name
-    }
+def phone_generator():
+    return fake.phone_number()
 
-    # отправляем запрос на регистрацию курьера и сохраняем ответ в переменную response
-    response = requests.post(f'{Urls.SCOOTER_URL}{Urls.CREATE_COURIER}', data=payload)
+def rent_time_generator():
+    return random.randint(1, 3)
 
-    # если регистрация прошла успешно (код ответа 201), добавляем в список логин и пароль курьера
-    if response.status_code == 201:
-        login_pass.append(login)
-        login_pass.append(password)
-        login_pass.append(first_name)
-
-    # возвращаем список
-    return login_pass
+def delivery_date_generator():
+    tomorrow = datetime.now().date() + timedelta(days=1)
+    return fake.date_between(start_date=tomorrow, end_date=tomorrow).strftime('%Y-%m-%d')
+ 
+def comment_generator():
+    return fake.sentence()
