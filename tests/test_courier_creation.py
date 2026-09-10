@@ -10,14 +10,9 @@ class TestCourierCreation:
     @allure.title("Курьер успешно создан при передаче в ручку всех обязательных полей")
     def test_courier_created_successfully(self, generate_courier_data, delete_courier_after_test):
         response_create = courier_creation(generate_courier_data)
-        courier_id = None
-        if response_create.status_code == 201:
-            response_login = courier_login(generate_courier_data['login'], generate_courier_data['password'])
-            if response_login.status_code == 200:
-                courier_id = response_login.json()['id']
-        assert courier_id > 0
         courier_id = courier_get_id(generate_courier_data['login'], generate_courier_data['password'])
-        assert courier_id is not None
+        assert response_create.status_code == 201
+        assert courier_id > 0
         delete_courier_after_test.append(courier_id)
 
     @allure.title("Код ответа - 201, при успешном создании курьера")
@@ -49,7 +44,7 @@ class TestCourierCreation:
     def test_identical_couriers_cant_create(self, generate_courier_data, delete_courier_after_test):
         response_create = courier_creation(generate_courier_data)
         response_repeat_courier_data = courier_creation(generate_courier_data)
-        assert response_repeat_courier_data.status_code != 201
+        assert response_repeat_courier_data.status_code == 409
         courier_id = courier_get_id(generate_courier_data['login'], generate_courier_data['password'])
         delete_courier_after_test.append(courier_id)
 
